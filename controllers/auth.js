@@ -14,15 +14,15 @@ const signup = async (req, res = response) => {
         const salt = bcryptjs.genSaltSync();
         user.password = bcryptjs.hashSync(password, salt);
         //Generate JWT
-        const idToken  = await generarJWT( user.id );
-        user.expiresIn = '4h';
+        const token  = await generarJWT( user.id );
+        //user.expiresIn = '4h';
         //Save to DB
         await user.save();
         
         res.status(200).json({
             email: user.email,
             localId: user.localId,
-            idToken: user.idToken,
+            idToken: token,
             expiresIn: user.expiresIn
         })
 
@@ -38,13 +38,15 @@ const login = async (req, res = response) => {
     try {
         
         const user = await User.findOne({ email });
+        
         if( !user ){
             return res.status(400).json({
                 msg: 'Usuario / Password no son correctos - usuario'
             });
         }
 
-        const match = bcrypt.compareSync(password ,user.password);
+        const match = await bcryptjs.compare(password ,user.password);
+
         if (!match){
             return res.status(400).json({
                 msg: 'Usuario / Password no son correctos - password'

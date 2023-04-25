@@ -18,7 +18,6 @@ const generarJWT = ( uid ) => {
         })
     })
 
-
 }
 
 module.exports = {

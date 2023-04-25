@@ -26,9 +26,9 @@ const RecipeSchema = Schema({
     }
 });
 
-// RecipeSchema.methods.toJSON = function() {
-//     const { __v, _id, ...recipe  } = this.toObject();
-//     return recipe;
-// }
+RecipeSchema.methods.toJSON = function() {
+    const { __v, _id, ...recipe  } = this.toObject();
+    return recipe;
+}
 
 module.exports = model( 'Recipe', RecipeSchema );
