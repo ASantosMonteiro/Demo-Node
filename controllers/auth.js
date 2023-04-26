@@ -27,7 +27,9 @@ const signup = async (req, res = response) => {
         })
 
     } catch (error) {
-        
+        res.status(500).json({
+            msg: 'Hable con el administrador'
+        });
     }
 }
 

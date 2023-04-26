@@ -20,18 +20,27 @@ const storeRecipes = async (req, res = response) => {
         res.status(200).json({
             msg: "Store recipe ok"
         });
+
     } catch (error) {
-        
+        res.status(500).json({
+            msg: 'Hable con el administrador'
+        });
     }
 }
 
 const fetchRecipes = async (req = request, res = response) => {
         
+    const { email } = req.authUser;
+
     try {
-        
-        res.status(200).json(recipes);
+       // console.log(email);
+        const recipe = await Recipe.find({ userEmail : email }).exec();
+       // console.log(recipe);
+        res.status(200).json(recipe);
     } catch (error) {
-        
+        res.status(500).json({
+            msg: 'Hable con el administrador'
+        });
     }    
 }
 //# FIN - Controladores para app Angular

@@ -5,11 +5,11 @@ const { validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();
 
-router.put('/',[
+router.put('',[
     validarJWT,
     validarCampos
 ], storeRecipes);
-router.get('/',[
+router.get('',[
     validarJWT,
     validarCampos
 ], fetchRecipes);
