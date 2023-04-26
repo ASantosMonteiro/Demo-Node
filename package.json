@@ -4,7 +4,7 @@
   "description": "bcryptjs,\r cors,\r dotenv,\r express,\r express-validator,\r jsonwebtoken,\r mongoose,",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
